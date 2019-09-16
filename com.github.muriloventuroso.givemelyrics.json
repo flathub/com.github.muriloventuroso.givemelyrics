@@ -1,10 +1,10 @@
 {
     "app-id": "com.github.muriloventuroso.givemelyrics",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version" : "18.08",
+    "runtime": "org.gnome.Platform",
+    "runtime-version" : "3.30",
     "base" : "io.elementary.BaseApp",
     "base-version" : "juno",
-    "sdk": "org.freedesktop.Sdk",
+    "sdk": "org.gnome.Sdk",
     "command": "com.github.muriloventuroso.givemelyrics",
 
     "finish-args": [
@@ -28,8 +28,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/muriloventuroso/givemelyrics/archive/0.2.2.tar.gz",
-                    "sha256": "9f1d7872d4329c642859a401419d4b7052d1ad47aa82aaa0cfa06ff192732496"
+                    "url": "https://github.com/muriloventuroso/givemelyrics/archive/0.3.0.tar.gz",
+                    "sha256": "8573460dee38dcde989eb9a8daff09bf047797cebd1b59882015fc8ba38a1ef7"
                 },
                 {
                     "type": "patch",
