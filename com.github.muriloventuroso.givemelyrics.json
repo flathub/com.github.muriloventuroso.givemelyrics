@@ -23,8 +23,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/muriloventuroso/givemelyrics/archive/0.4.5.tar.gz",
-                    "sha256": "9c2f471dff92079173e8c436a6badf4deed426f1635f6af3d54a923023ab835c"
+                    "url": "https://github.com/muriloventuroso/givemelyrics/archive/0.5.0.tar.gz",
+                    "sha256": "574fdd887715cffeed814b53b2c745bd69260ca584712376ec2b10d3b5af8563"
                 },
                 {
                     "type": "patch",
