@@ -3,10 +3,10 @@ Date:   Wed Jan 30 09:22:04 2019 -0200
 
     patch for forcing elementary os theme and icons
 
-diff --git a/src/Application.vala b/src/Application.vala
+diff --git a/src/MainWindow.vala b/src/MainWindow.vala
 index a848f7e..f85b53b 100644
---- a/src/Application.vala
-+++ b/src/Application.vala
+--- a/src/MainWindow.vala
++++ b/src/MainWindow.vala
 @@ -61,6 +61,9 @@ namespace GiveMeLyrics {
                  () => {
                      Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = settings.use_dark_theme;
