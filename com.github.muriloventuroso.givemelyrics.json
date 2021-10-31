@@ -1,15 +1,15 @@
 {
     "app-id": "com.github.muriloventuroso.givemelyrics",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version" : "19.08",
+    "runtime-version" : "21.08",
     "base" : "io.elementary.BaseApp",
-    "base-version" : "juno-19.08",
+    "base-version" : "juno-21.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "com.github.muriloventuroso.givemelyrics",
     "finish-args": [
         "--share=ipc",
         "--share=network",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--device=dri",
         "--socket=wayland",
         "--talk-name=org.freedesktop.DBus",
