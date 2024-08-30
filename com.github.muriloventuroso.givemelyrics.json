@@ -18,6 +18,18 @@
     ],
     "modules": [
         {
+            "name": "libsoup",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                   "type":"git",
+                   "url":"https://gitlab.gnome.org/GNOME/libsoup.git",
+                   "tag":"2.74.1",
+                   "commit":"0e1d3eee74cc568aa077b3472e7fcd3f13d42007"
+                }
+            ]
+        },
+        {
             "name": "givemelyrics",
             "buildsystem": "meson",
             "sources": [
