@@ -24,8 +24,8 @@
                 {
                    "type":"git",
                    "url":"https://gitlab.gnome.org/GNOME/libsoup.git",
-                   "tag":"2.74.1",
-                   "commit":"0e1d3eee74cc568aa077b3472e7fcd3f13d42007"
+                   "tag":"2.46.0",
+                   "commit":"6c14af04775a9de4dfa3fa0cc15a7ad0462ef3d9"
                 }
             ]
         },
