@@ -12,7 +12,6 @@
         "--socket=fallback-x11",
         "--device=dri",
         "--socket=wayland",
-        "--talk-name=org.freedesktop.DBus",
         "--talk-name=org.mpris.MediaPlayer2.*",
         "--metadata=X-DConf=migrate-path=/com/github/muriloventuroso/givemelyrics/"
     ],
@@ -24,8 +23,7 @@
                 {
                    "type":"git",
                    "url":"https://gitlab.gnome.org/GNOME/libsoup.git",
-                   "tag":"2.46.0",
-                   "commit":"6c14af04775a9de4dfa3fa0cc15a7ad0462ef3d9"
+                   "tag":"2.74.1"
                 }
             ]
         },
@@ -41,6 +39,14 @@
                 {
                     "type": "patch",
                     "path": "eos-theme.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "meson.build.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "LyricsFetcher.vala.patch"
                 }
             ]
         }
