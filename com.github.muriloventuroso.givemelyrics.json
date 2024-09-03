@@ -17,17 +17,7 @@
         "--metadata=X-DConf=migrate-path=/com/github/muriloventuroso/givemelyrics/"
     ],
     "modules": [
-        {
-            "name": "libsoup",
-            "buildsystem": "meson",
-            "sources": [
-                {
-                   "type":"git",
-                   "url":"https://gitlab.gnome.org/GNOME/libsoup.git",
-                   "tag":"2.74.1"
-                }
-            ]
-        },
+        "shared-modules/libsoup/libsoup-2.4.json",
         {
             "name": "givemelyrics",
             "buildsystem": "meson",
@@ -44,19 +34,12 @@
                 },
                 {
                     "type": "patch",
-                    "path": "eos-theme.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "meson.build.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "LyricsFetcher.vala.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "com.github.muriloventuroso.givemelyrics.appdata.xml.in.patch"
+                    "paths": [
+                        "eos-theme.patch",
+                        "meson.build.patch",
+                        "LyricsFetcher.vala.patch",
+                        "com.github.muriloventuroso.givemelyrics.appdata.xml.in.patch"
+                    ]
                 }
             ]
         }
