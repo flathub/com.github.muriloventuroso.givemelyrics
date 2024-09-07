@@ -1,0 +1,46 @@
+--- a/src/Services/LyricsFetcher.vala	2024-08-31 13:55:06.644945205 -0500
++++ b/src/Services/LyricsFetcher.vala	2024-09-01 16:46:14.130622362 -0500
+@@ -31,12 +31,15 @@
+     public class LyricsFetcher : GLib.Object {
+ 
+         private string[] lyrics_apis = {};
++        private string? _cookie = "";
+ 
+         public LyricsFetcher () {
+             lyrics_apis += "music_163";
+             lyrics_apis += "letras_mus";
+             lyrics_apis += "lyrics_wikia";
+             lyrics_apis += "api_seeds";
++
++            get_music_163("","");
+         }
+ 
+         private Lyric? get_music_163(string title, string artist){
+@@ -45,6 +48,10 @@
+             session.timeout = 5;
+             var url = 163_url + title + "," + artist;
+             var message = new Soup.Message ("GET", url);
++
++            session.user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
++            message.request_headers.append ("Cookie", _cookie);
++
+             /* send a sync request */
+             session.send_message (message);
+             try {
+@@ -52,6 +59,16 @@
+                 parser.load_from_data ((string) message.response_body.flatten ().data, -1);
+ 
+                 var root_object = parser.get_root ().get_object ();
++
++                if(_cookie.char_count() < 10 || _cookie == null){
++                    _cookie = message.response_headers.get_one("Set-Cookie");
++                    if(_cookie == null || _cookie.char_count() == 0 ){
++                        print("Alert: cookie could not be set.\n");
++                    }
++
++                    return null;
++                }
++
+                 if(root_object.get_int_member ("code") == 200){
+                     var result = root_object.get_object_member ("result");
+                     var songs = result.get_array_member ("songs");

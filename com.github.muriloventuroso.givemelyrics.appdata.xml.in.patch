@@ -1,0 +1,10 @@
+--- a/data/com.github.muriloventuroso.givemelyrics.appdata.xml.in	2020-06-02 10:24:55.000000000 -0500
++++ b/data/com.github.muriloventuroso.givemelyrics.appdata.xml.in	2024-09-01 17:53:37.406766352 -0500
+@@ -149,6 +149,7 @@
+     <content_attribute id="money-purchasing">none</content_attribute>
+     <content_attribute id="money-gambling">none</content_attribute>
+   </content_rating>
++  <launchable type="desktop-id">com.github.muriloventuroso.givemelyrics.desktop</launchable>
+   <developer_name>Murilo Venturoso</developer_name>
+   <url type="homepage">https://github.com/muriloventuroso/givemelyrics</url>
+   <url type="bugtracker">https://github.com/muriloventuroso/givemelyrics/issues</url>
