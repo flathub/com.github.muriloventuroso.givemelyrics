@@ -5,6 +5,13 @@
     "base" : "io.elementary.BaseApp",
     "base-version" : "circe-25.08",
     "sdk": "org.freedesktop.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.vala"
+    ],
+    "build-options" : {
+        "prepend-path" : "/usr/lib/sdk/vala/bin/",
+        "prepend-ld-library-path" : "/usr/lib/sdk/vala/lib"
+    },
     "command": "com.github.muriloventuroso.givemelyrics",
     "finish-args": [
         "--share=ipc",
@@ -16,44 +23,34 @@
         "--talk-name=org.mpris.MediaPlayer2.*",
         "--metadata=X-DConf=migrate-path=/com/github/muriloventuroso/givemelyrics/"
     ],
-    
-    "sdk-extensions" : ["org.freedesktop.Sdk.Extension.vala"],
-    "build-options" : {"prepend-path" : "/usr/lib/sdk/vala/bin/","prepend-ld-library-path" : "/usr/lib/sdk/vala/lib"},
-    
+    "cleanup" : [
+        "/include",
+        "/lib/girepository-1.0",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/ghostscript",
+        "/share/gir-1.0",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "/share/vala",
+        "*.la",
+        "*.a"
+    ],
     "modules": [
         "shared-modules/libsoup/libsoup-2.4.json",
         {
-            "name": "gee",
-            "buildsystem": "autotools",
-            "build-options": {"cflags": "-Wno-error=incompatible-pointer-types"},
-            "sources": [
-                {
-                  "type": "archive",
-                  "url": "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.6.tar.xz",
-                  "sha256": "1bf834f5e10d60cc6124d74ed3c1dd38da646787fbf7872220b8b4068e476d4d"
-                }
-            ]
-        },
-        {
-          "name": "granite",
-          "buildsystem": "meson",
-          "config-opts": ["--buildtype=release"],
-          "sources": [
-              {
-                  "type": "archive",
-                  "url": "https://github.com/elementary/granite/archive/refs/tags/6.2.0.tar.gz",
-                  "sha256": "067d31445da9808a802fca523630c3e4b84d2d7c78ae547ced017cb7f3b9c6b5"
-              }
-          ]
+            "name": "libgee",
+            "sources": [{
+                "type": "archive",
+                "url": "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.8.tar.xz",
+                "sha256": "189815ac143d89867193b0c52b7dc31f3aa108a15f04d6b5dca2b6adfad0b0ee"
+            }]
         },
         {
             "name": "givemelyrics",
             "buildsystem": "meson",
-            "post-install": [
-                "install -Dm644 /app/share/icons/hicolor/24x24@2/apps/com.github.muriloventuroso.givemelyrics.svg /app/share/icons/hicolor/scalable/apps/com.github.muriloventuroso.givemelyrics.svg",
-                "mv /app/share/icons/hicolor/24x24/actions/* /app/share/icons/hicolor/scalable/actions/",
-                "rm -r /app/share/icons/hicolor/[0-9]*"
-            ],
             "sources": [
                 {
                     "type": "archive",
@@ -63,12 +60,17 @@
                 {
                     "type": "patch",
                     "paths": [
-                        "eos-theme.patch",
-                        "meson.build.patch",
-                        "LyricsFetcher.vala.patch",
-                        "com.github.muriloventuroso.givemelyrics.appdata.xml.in.patch"
+                        "patches/eos-theme.patch",
+                        "patches/meson.build.patch",
+                        "patches/LyricsFetcher.vala.patch",
+                        "patches/fix_appdata.patch"
                     ]
                 }
+            ],
+            "post-install": [
+                "install -Dm644 /app/share/icons/hicolor/24x24@2/apps/com.github.muriloventuroso.givemelyrics.svg /app/share/icons/hicolor/scalable/apps/com.github.muriloventuroso.givemelyrics.svg",
+                "mv /app/share/icons/hicolor/24x24/actions/* /app/share/icons/hicolor/scalable/actions/",
+                "rm -r /app/share/icons/hicolor/[0-9]*"
             ]
         }
     ]
