@@ -63,10 +63,10 @@
                 {
                     "type": "patch",
                     "paths": [
-                        "eos-theme.patch",
-                        "meson.build.patch",
-                        "LyricsFetcher.vala.patch",
-                        "com.github.muriloventuroso.givemelyrics.appdata.xml.in.patch"
+                        "patches/eos-theme.patch",
+                        "patches/meson.build.patch",
+                        "patches/LyricsFetcher.vala.patch",
+                        "patches/fix_appdata.patch"
                     ]
                 }
             ]
