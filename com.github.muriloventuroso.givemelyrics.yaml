@@ -1,0 +1,51 @@
+app-id: com.github.muriloventuroso.givemelyrics
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+base: io.elementary.BaseApp
+base-version: tanit-26.08
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.vala
+build-options:
+  prepend-path: /usr/lib/sdk/vala/bin/
+  prepend-ld-library-path: /usr/lib/sdk/vala/lib
+command: com.github.muriloventuroso.givemelyrics
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=fallback-x11
+  - --device=dri
+  - --socket=wayland
+  - --talk-name=org.freedesktop.DBus
+  - --talk-name=org.mpris.MediaPlayer2.*
+  - --metadata=X-DConf=migrate-path=/com/github/muriloventuroso/givemelyrics/
+cleanup:
+  - '*.la'
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
+modules:
+  - shared-modules/libsoup/libsoup-2.4.json
+
+  # Required by the givemelyrics. The base app no longer provides it.
+  - name: libgee
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libgee/0.20/libgee-0.20.8.tar.xz
+        sha256: 189815ac143d89867193b0c52b7dc31f3aa108a15f04d6b5dca2b6adfad0b0ee
+
+  - name: givemelyrics
+    buildsystem: meson
+    post-install:
+      - install -Dm644 /app/share/icons/hicolor/24x24@2/apps/${FLATPAK_ID}.svg -t  /app/share/icons/hicolor/scalable/apps/
+      - mv /app/share/icons/hicolor/24x24/actions/* /app/share/icons/hicolor/scalable/actions/
+      - rm -r /app/share/icons/hicolor/[0-9]*
+    sources:
+      - type: archive
+        url: https://github.com/muriloventuroso/givemelyrics/archive/0.5.0.tar.gz
+        sha256: 574fdd887715cffeed814b53b2c745bd69260ca584712376ec2b10d3b5af8563
+      - type: patch
+        paths:
+          - patches/eos-theme.patch
+          - patches/meson.build.patch
+          - patches/LyricsFetcher.vala.patch
+          - patches/fix_appdata.patch
